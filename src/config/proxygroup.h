@@ -10,7 +10,8 @@ enum class ProxyGroupType
     Fallback,
     LoadBalance,
     Relay,
-    SSID
+    SSID,
+    Smart
 };
 
 enum class BalanceStrategy
@@ -51,6 +52,8 @@ struct ProxyGroupConfig
             return "relay";
         case ProxyGroupType::SSID:
             return "ssid";
+        case ProxyGroupType::Smart:
+            return "smart";
         }
         return "";
     }
