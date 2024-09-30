@@ -137,9 +137,9 @@ void wireguardConstruct(Proxy &node, const std::string &group, const std::string
     node.ClientId = clientId;
 }
 
-void hysteriaConstruct(Proxy &node, const std::string &group, const std::string &remarks, const std::string &server, const std::string &port, const std::string &ports, const std::string &protocol, const std::string &obfs_protocol, const std::string &up, const std::string &up_speed, const std::string &down, const std::string &down_speed, const std::string &auth, const std::string &auth_str, const std::string &obfs, const std::string &sni, const std::string &fingerprint, const std::string &ca, const std::string &ca_str, const std::string &recv_window_conn, const std::string &recv_window, const std::string &disable_mtu_discovery, const std::string &hop_interval, const std::string &alpn, tribool tfo, tribool scv)
+void hysteriaConstruct(Proxy &node, const std::string &group, const std::string &remarks, const std::string &server, const std::string &port, const std::string &ports, const std::string &protocol, const std::string &obfs_protocol, const std::string &up, const std::string &up_speed, const std::string &down, const std::string &down_speed, const std::string &auth, const std::string &auth_str, const std::string &obfs, const std::string &sni, const std::string &fingerprint, const std::string &ca, const std::string &ca_str, const std::string &recv_window_conn, const std::string &recv_window, const std::string &disable_mtu_discovery, const std::string &hop_interval, const std::string &alpn, tribool tfo, tribool scv, const std::string &underlying_proxy)
 {
-    commonConstruct(node, ProxyType::Hysteria, group, remarks, server, port, tribool(), tfo, scv, tribool());
+    commonConstruct(node, ProxyType::Hysteria, group, remarks, server, port, tribool(), tfo, scv, tribool(), underlying_proxy);
     node.Ports = ports;
     node.Protocol = protocol;
     node.OBFSParam = obfs_protocol;
@@ -186,9 +186,9 @@ void hysteriaConstruct(Proxy &node, const std::string &group, const std::string 
     }
 }
 
-void vlessConstruct(Proxy &node, const std::string &group, const std::string &remarks, const std::string &add, const std::string &port, const std::string &type, const std::string &id, const std::string &aid, const std::string &net, const std::string &cipher, const std::string &flow, const std::string &mode, const std::string &path, const std::string &host, const std::string &edge, const std::string &tls, const std::string &pbk, const std::string &sid, const std::string &fp, const std::string &sni, const std::vector<std::string> &alpnList, const std::string &packet_encoding, tribool udp, tribool tfo, tribool scv, tribool tls13)
+void vlessConstruct(Proxy &node, const std::string &group, const std::string &remarks, const std::string &add, const std::string &port, const std::string &type, const std::string &id, const std::string &aid, const std::string &net, const std::string &cipher, const std::string &flow, const std::string &mode, const std::string &path, const std::string &host, const std::string &edge, const std::string &tls, const std::string &pbk, const std::string &sid, const std::string &fp, const std::string &sni, const std::vector<std::string> &alpnList, const std::string &packet_encoding, tribool udp, tribool tfo, tribool scv, tribool tls13, const std::string &underlying_proxy)
 {
-    commonConstruct(node, ProxyType::VLESS, group, remarks, add, port, udp, tfo, scv, tls13);
+    commonConstruct(node, ProxyType::VLESS, group, remarks, add, port, udp, tfo, scv, tls13, underlying_proxy);
     node.UserId = id.empty() ? "00000000-0000-0000-0000-000000000000" : id;
     node.AlterId = to_int(aid);
     node.EncryptMethod = cipher;
@@ -222,9 +222,9 @@ void vlessConstruct(Proxy &node, const std::string &group, const std::string &re
     }
 }
 
-void hysteria2Construct(Proxy &node, const std::string &group, const std::string &remarks, const std::string &server, const std::string &port, const std::string &up, const std::string &down, const std::string &password, const std::string &obfs, const std::string &obfs_password, const std::string &sni, const std::string &fingerprint, const std::string &alpn, const std::string &ca, const std::string &ca_str, const std::string &cwnd, tribool tfo, tribool scv)
+void hysteria2Construct(Proxy &node, const std::string &group, const std::string &remarks, const std::string &server, const std::string &port, const std::string &up, const std::string &down, const std::string &password, const std::string &obfs, const std::string &obfs_password, const std::string &sni, const std::string &fingerprint, const std::string &alpn, const std::string &ca, const std::string &ca_str, const std::string &cwnd, tribool tfo, tribool scv, const std::string &underlying_proxy)
 {
-    commonConstruct(node, ProxyType::Hysteria2, group, remarks, server, port, tribool(), tfo, scv, tribool());
+    commonConstruct(node, ProxyType::Hysteria2, group, remarks, server, port, tribool(), tfo, scv, tribool(), underlying_proxy);
     node.UpSpeed = to_int(up);
     node.DownSpeed = to_int(down);
     node.Password = password;
@@ -241,9 +241,9 @@ void hysteria2Construct(Proxy &node, const std::string &group, const std::string
     node.CWND = to_int(cwnd);
 }
 
-void tuicConstruct(Proxy &node, const std::string &group, const std::string &remarks, const std::string &add, const std::string &port, const std::string &password, const std::string &congestion_control, const std::string &alpn, const std::string &sni, const std::string &uuid, const std::string &udpRelayMode, const std::string &token, tribool udp, tribool tfo, tribool scv, tribool reduceRtt, tribool disableSni, uint16_t request_timeout)
+void tuicConstruct(Proxy &node, const std::string &group, const std::string &remarks, const std::string &add, const std::string &port, const std::string &password, const std::string &congestion_control, const std::string &alpn, const std::string &sni, const std::string &uuid, const std::string &udpRelayMode, const std::string &token, tribool udp, tribool tfo, tribool scv, tribool reduceRtt, tribool disableSni, uint16_t request_timeout, const std::string &underlying_proxy)
 {
-    commonConstruct(node, ProxyType::TUIC, group, remarks, add, port, udp, tfo, scv, tribool());
+    commonConstruct(node, ProxyType::TUIC, group, remarks, add, port, udp, tfo, scv, tribool(), underlying_proxy);
     node.Password = password;
     node.Alpn = alpn;
     node.ServerName = sni;
@@ -2958,7 +2958,7 @@ void explodeSingbox(rapidjson::Value &outbounds, std::vector<Proxy> &nodes)
                     mtu = GetMember(singboxNode, "mtu");
                     password = GetMember(singboxNode, "pre_shared_key");
                     dns_server = {"8.8.8.8"};
-                    wireguardConstruct(node, group, ps, server, port, ip, ipv6, private_key, public_key, password, dns_server, mtu, "0", "", "", udp);
+                    wireguardConstruct(node, group, ps, server, port, ip, ipv6, private_key, public_key, password, dns_server, mtu, "0", "", "", udp, "");
                     break;
                 case "socks"_hash:
                     group = SOCKS_DEFAULT_GROUP;
